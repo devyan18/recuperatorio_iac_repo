@@ -6,13 +6,17 @@ services:
     image: mongo:6.0
     ports:
       - 27017:27017
+    volumes:
+      - ./bd/mongo:/data/db
 
   my_maria_db:
     image: mariadb:10.6.14
     ports:
       - 3306:3306
     environment:
-      - MARIADB_ROOT_PASSWORD=$MARIADB_ROOT_PASSWORD
+      - MARIADB_ROOT_PASSWORD="${MARIADB_ROOT_PASSWORD}"
+    volumes:
+      - ./bd/maria:/var/lib/mysql
 
   my_express:
     build: 
